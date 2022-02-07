@@ -1,0 +1,56 @@
+<mat-sidenav-container>
+
+  <mat-sidenav #sidenav>
+    <div fxLayout="row" fxLayoutAlign="end none">
+      <button mat-icon-button
+              (click)="sidenav.toggle()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <mat-form-field appearance="fill" color="accent">
+      <mat-label>Location</mat-label>
+      <input type="text"
+              placeholder="Search Location"
+              matInput
+              [(ngModel)]="value">
+    </mat-form-field>
+
+    <button mat-raised-button
+            color="accent"
+            (click)="search()">
+      <mat-icon>search</mat-icon>
+      Search
+    </button>
+  </mat-sidenav>
+
+  <div class="sidenav__content">
+    <div class="sidenav__buttons"
+         fxLayout>
+      <button mat-raised-button
+              (click)="sidenav.toggle()">
+        Search for places
+      </button>
+      <span class="spacer"></span>
+      <button mat-icon-button
+              (click)="searchCurrentLocation()">
+        <mat-icon>my_location</mat-icon>
+      </button>
+    </div>
+
+    <div *ngIf="location"
+         class="sidenav__weather"
+         fxLayout="column"
+         fxLayoutAlign="none center">
+      <img class="weather-img" [src]="location.weather[0].icon | weatherImg" alt="">
+      <h1>{{ location.main.temp | number:'1.0-0' }} <span>°C</span></h1>
+      <p class="weather__description">{{ location.weather[0].description | titlecase }}</p>
+      <p class="weather__date">Today - {{ today | date }}</p>
+      <p class="weather__location">
+        {{ location.name }}
+        <span><mat-icon>place</mat-icon></span>
+      </p>
+    </div>
+  </div>
+
+</mat-sidenav-container>
