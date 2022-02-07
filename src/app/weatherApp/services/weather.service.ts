@@ -5,20 +5,20 @@ import { Observable } from 'rxjs';
 import { LocationWeather } from '../interfaces/location.interfaces';
 ;
 
-import { LocationDays } from '../interfaces/location-days.interface';
+import { List, LocationDays } from '../interfaces/location-days.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
 
-  // urlImage = 'https://openweathermap.org/img/wn/01d@2x.png';
-
   private api: string = 'd478f7cbec80ed627e3337be5d8c0e46';
   private baseUrl: string = 'https://api.openweathermap.org/data/2.5';
 
   location!: LocationWeather;
-  locationForDays!: LocationDays;
+  locationForDays: List[] = [];
+
+  units: string = 'metric';
 
   constructor( private http: HttpClient ) { }
 

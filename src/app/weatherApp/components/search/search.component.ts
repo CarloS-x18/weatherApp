@@ -22,6 +22,10 @@ export class SearchComponent {
     return this.weatherService.locationForDays
   }
 
+  get units() {
+    return this.weatherService.units;
+  }
+
   constructor( private weatherService: WeatherService,
                private snackBar: MatSnackBar ) { }
 
@@ -45,8 +49,13 @@ export class SearchComponent {
 
     this.weatherService.getDaysWeather( this.value )
       .subscribe( days => {
-        this.weatherService.locationForDays = days;
-        console.log(days);
+        this.weatherService.locationForDays = [];
+
+        for (let i = 0; i < 6; i++) {
+          this.weatherService.locationForDays.push(days.list[i]);
+        }
+
+        console.log(this.weatherService.locationForDays);
       });
 
     this.value = '';
@@ -65,9 +74,14 @@ export class SearchComponent {
         });
 
       this.weatherService.getDaysWeatherCurrentLocation( latitude, longitude )
-        .subscribe( resp => {
-          this.weatherService.locationForDays = resp;
-          console.log(resp)
+        .subscribe( days => {
+          this.weatherService.locationForDays = [];
+
+          for (let i = 0; i < 6; i++) {
+            this.weatherService.locationForDays.push(days.list[i]);
+          }
+
+          console.log(this.weatherService.locationForDays);
         });
     });
 

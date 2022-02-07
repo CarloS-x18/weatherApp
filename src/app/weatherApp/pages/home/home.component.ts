@@ -12,11 +12,19 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.weatherService.getWeatherLocation( 'New York' )
+    this.weatherService.getWeatherLocation( 'Tokyo' )
       .subscribe( resp => {
-        this.weatherService.location = resp;
+          this.weatherService.location = resp;
+          console.log(resp);
+        });
 
-        console.log( this.weatherService.location );
+    this.weatherService.getDaysWeather( 'Tokyo' )
+      .subscribe( days => {
+        for (let i = 0; i < 6; i++) {
+          this.weatherService.locationForDays.push(days.list[i]);
+        }
+
+        console.log(this.weatherService.locationForDays);
       });
 
   }

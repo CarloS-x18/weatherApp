@@ -9,6 +9,7 @@ import { SearchComponent } from './components/search/search.component';
 import { HomeComponent } from './pages/home/home.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { WeatherImgPipe } from './pipes/weather-img.pipe';
+import { TempPipe } from './pipes/temp.pipe';
 
 
 
@@ -17,7 +18,8 @@ import { WeatherImgPipe } from './pipes/weather-img.pipe';
     HomeComponent,
     SearchComponent,
     WeatherComponent,
-    WeatherImgPipe
+    WeatherImgPipe,
+    TempPipe
   ],
   exports: [
     HomeComponent

@@ -43,7 +43,7 @@
          fxLayout="column"
          fxLayoutAlign="none center">
       <img class="weather-img" [src]="location.weather[0].icon | weatherImg" alt="">
-      <h1>{{ location.main.temp | number:'1.0-0' }} <span>°C</span></h1>
+      <h1>{{ location.main.temp | temp:units | number:'1.0-0' }} <span>°C</span></h1>
       <p class="weather__description">{{ location.weather[0].description | titlecase }}</p>
       <p class="weather__date">Today - {{ today | date }}</p>
       <p class="weather__location">

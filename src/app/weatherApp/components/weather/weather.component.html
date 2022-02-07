@@ -1,1 +1,50 @@
-<p>weather works!</p>
+<div class="cards-container"
+     fxLayout="row wrap"
+     fxLayoutAlign="center center">
+
+  <mat-card *ngFor="let day of days"
+            fxLayout="column"
+            fxLayoutAlign="center">
+    <div class="card__date">
+      <p>{{ day.dt_txt | date:'EEEE, d LLLL' }}</p>
+      <p>{{ day.dt_txt | date:'h:mm a' }}</p>
+    </div>
+    <img [src]=" day.weather[0].icon | weatherImg ">
+    <div fxLayout>
+      <p class="temp-max">{{18.83 | number:'1.0-0'}} <span>°C</span></p>
+      <span class="spacer"></span>
+      <p class="temp-min">{{14.92 | number:'1.0-0'}} <span>°C</span></p>
+    </div>
+  </mat-card>
+</div>
+
+<div class="today-weather" *ngIf="locationWeather">
+  <h2>Today's Hightlights</h2>
+  <div class="today-cards-container">
+    <mat-card>
+      <h3>Temp Max</h3>
+      <p>
+        {{ locationWeather.main.temp_max | number:'1.0-0' }} <span>°C</span>
+      </p>
+    </mat-card>
+    <mat-card>
+      <h3>Temp Min</h3>
+      <p>
+        {{ locationWeather.main.temp_min | number:'1.0-0' }} <span>°C</span>
+      </p>
+    </mat-card>
+    <mat-card>
+      <h3>Wind Status</h3>
+      <p>
+        {{ locationWeather.wind.speed | number:'1.0-0' }} <span>mph</span>
+      </p>
+    </mat-card>
+    <mat-card>
+      <h3>Humidity</h3>
+      <p>
+        {{ locationWeather.main.humidity | number:'1.0-0' }} <span>%</span>
+      </p>
+      <mat-progress-bar mode="determinate" [value]="locationWeather.main.humidity"></mat-progress-bar>
+    </mat-card>
+  </div>
+</div>
